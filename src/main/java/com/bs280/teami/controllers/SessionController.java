@@ -38,7 +38,7 @@ public class SessionController {
     @GetMapping()
     @RequestMapping("{id}")
     public Session get(@PathVariable Long id) {
-        return sessionRepository.getReferenceById(id);
+        return sessionRepository.findById(id).orElse(null);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
