@@ -40,7 +40,7 @@ public class SpeakerController {
     @GetMapping
     @RequestMapping("{id}")
     public Speaker get(@PathVariable Long id) {
-        return speakerRepository.getReferenceById(id);
+        return speakerRepository.findById(id).orElse(null);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
@@ -51,6 +51,7 @@ public class SpeakerController {
         speakerRepository.deleteById(id);
     }
 
+    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
     public Speaker update(@PathVariable Long id, @RequestBody Speaker speaker) {
         /**
          * TODO: Add validation that all attributes are passed in, otherwise return 400
