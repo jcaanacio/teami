@@ -6,7 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity(name = "sessions")
+@Entity(name = "sessions1")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Session {
 
