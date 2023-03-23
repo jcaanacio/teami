@@ -2,9 +2,12 @@ package com.bs280.teami.models;
 
 import jakarta.persistence.*;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity(name = "sessions")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Session {
 
     @Id
@@ -14,13 +17,13 @@ public class Session {
     private String session_description;
     private Integer session_length;
 
-    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
             name = "session_speakers",
             joinColumns = @JoinColumn(name = "session_id"),
             inverseJoinColumns = @JoinColumn(name = "speaker_id")
     )
-    @JsonIgnoreProperties(value = {"sessions", "hibernateLazyInitializer"})
+    @JsonIgnore
     private List<Speaker> speakers;
     public Session(){}
 
