@@ -191,13 +191,13 @@ _For more examples, please refer to the [Documentation](https://github.com/jcaan
 
 ## Roadmap
 
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-  - [ ] Chinese
-  - [ ] Spanish
+## Entity Relationship Diagram
+
+![ERD](https://github.com/jcaanacio/teami/blob/main/public/erd.JPG)
+
+## Project Architecture
+
+![Project Architecture](https://github.com/jcaanacio/teami/blob/main/public/roadmap.png)
 
 See the [open issues](https://github.com/jcaanacio/teami/issues) for a full list of proposed features (and known issues).
 
