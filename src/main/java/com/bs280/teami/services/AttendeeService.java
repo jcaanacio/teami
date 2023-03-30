@@ -21,4 +21,8 @@ public class AttendeeService {
         return attendeeRepository.saveAndFlush(attendee);
     }
 
+    public void delete(Long id){
+        attendeeRepository.deleteById(id);
+    }
+
 }
