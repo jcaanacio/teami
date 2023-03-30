@@ -1,6 +1,5 @@
 package com.bs280.teami.models;
 
-import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -9,7 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Component
+
 @Entity(name = "attendees")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Attendee {
@@ -24,7 +23,12 @@ public class Attendee {
     private String email;
     private Long phone_number;
 
-    
+    public Long getAttendee_id(){
+        return attendee_id;
+    }
+    public void setAttendee_id(Long attendee_id){
+        this.attendee_id = attendee_id;
+    }
     public String getFirst_name() {
         return first_name;
     }
