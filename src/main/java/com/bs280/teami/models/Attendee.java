@@ -1,5 +1,7 @@
 package com.bs280.teami.models;
 
+import org.springframework.stereotype.Component;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
@@ -7,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+@Component
 @Entity(name = "attendees")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Attendee {
