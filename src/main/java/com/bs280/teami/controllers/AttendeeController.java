@@ -38,6 +38,10 @@ public class AttendeeController {
         attendeesService.delete(id);
     }
 
-    
+    @GetMapping()
+    @RequestMapping("{id}")
+    public Attendee get(@PathVariable Long id){
+        return attendeesService.get(id);
+    }
 
 }

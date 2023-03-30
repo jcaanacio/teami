@@ -25,4 +25,8 @@ public class AttendeeService {
         attendeeRepository.deleteById(id);
     }
 
+    public Attendee get(Long id){
+        return attendeeRepository.findById(id).orElse(null);
+    }
+
 }
