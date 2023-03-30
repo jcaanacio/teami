@@ -44,4 +44,9 @@ public class AttendeeController {
         return attendeesService.get(id);
     }
 
+    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
+    public Attendee update(@PathVariable Long id, @RequestBody Attendee attendee){
+        return attendeesService.update(id,attendee);
+    }
+
 }
