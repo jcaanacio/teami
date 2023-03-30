@@ -12,7 +12,7 @@ import com.bs280.teami.repositories.AttendeeRepository;
 @Service
 public class AttendeeService {
     @Autowired
-    private static AttendeeRepository attendeeRepository;
+    private AttendeeRepository attendeeRepository;
 
     public List<Attendee> list() {
         return attendeeRepository.findAll();
@@ -22,18 +22,18 @@ public class AttendeeService {
         return attendeeRepository.saveAndFlush(attendee);
     }
 
-    public static Attendee get(Long id) {
+    public Attendee get(Long id) {
         return attendeeRepository.findById(id).orElse(null);
     }
 
-    public static void delete(Long id) {
+    public void delete(Long id) {
         attendeeRepository.deleteById(id);
     }
 
-    public static Attendee update(Long id,Object attendee) {
+    public Attendee update(Long id,Object attendee) {
         Attendee existingAttendee = attendeeRepository.getReferenceById(id);
         BeanUtils.copyProperties(attendee, existingAttendee, "attendee_id");
         return attendeeRepository.saveAndFlush(existingAttendee);
     }
-    
+
 }

@@ -36,19 +36,19 @@ public class AttendeeController {
     @GetMapping()
     @RequestMapping("{id}")
     public Attendee get(@PathVariable Long id) {
-        return AttendeeService.get(id);
+        return attendeesService.get(id);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable Long id) {
-        AttendeeService.delete(id);
+        attendeesService.delete(id);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
     public Attendee update(@PathVariable Long id, @RequestBody Attendee attendee) {
-        return AttendeeService.update(id,attendee);
+        return attendeesService.update(id,attendee);
 
     }
 
-    
+
 }
