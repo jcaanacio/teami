@@ -2,6 +2,7 @@ package com.bs280.teami.services;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,12 @@ public class AttendeeService {
 
     public Attendee get(Long id){
         return attendeeRepository.findById(id).orElse(null);
+    }
+
+    public Attendee update(Long id,Attendee attendee){
+        Attendee existingAttendee = attendeeRepository.getReferenceById(id);
+        BeanUtils.copyProperties(attendee, existingAttendee);
+        return attendeeRepository.saveAndFlush(existingAttendee);
     }
 
 }
