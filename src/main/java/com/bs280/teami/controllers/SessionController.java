@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bs280.teami.libraries.Auth;
 import com.bs280.teami.models.Session;
 import com.bs280.teami.services.SessionService;
 
@@ -23,6 +24,7 @@ public class SessionController {
     @Autowired
     private SessionService sessionService;
 
+    @Auth
     @GetMapping
     public List<Session> list() {
         return sessionService.list();
@@ -34,17 +36,20 @@ public class SessionController {
         return sessionService.create(session);
     }
 
+    @Auth
     @GetMapping()
     @RequestMapping("{id}")
     public Session get(@PathVariable Long id) {
         return sessionService.get(id);
     }
 
+    @Auth
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable Long id) {
         sessionService.delete(id);
     }
 
+    @Auth
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
     public Session update(@PathVariable Long id, @RequestBody Session session) {
         return sessionService.update(id,session);
