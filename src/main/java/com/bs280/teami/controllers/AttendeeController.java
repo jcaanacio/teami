@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.bs280.teami.libraries.Auth;
 import com.bs280.teami.models.Attendee;
 import com.bs280.teami.services.AttendeeService;
 
@@ -22,6 +24,7 @@ public class AttendeeController {
     @Autowired
     private AttendeeService attendeesService;
 
+    @Auth
     @GetMapping
     public List<Attendee> list(){
         return attendeesService.list();
@@ -33,17 +36,20 @@ public class AttendeeController {
         return attendeesService.create(attendee);
     }
 
+    @Auth
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable Long id){
         attendeesService.delete(id);
     }
 
+    @Auth
     @GetMapping()
     @RequestMapping("{id}")
     public Attendee get(@PathVariable Long id){
         return attendeesService.get(id);
     }
 
+    @Auth
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
     public Attendee update(@PathVariable Long id, @RequestBody Attendee attendee){
         return attendeesService.update(id,attendee);
