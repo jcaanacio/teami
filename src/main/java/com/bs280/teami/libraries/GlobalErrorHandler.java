@@ -14,9 +14,6 @@ public class GlobalErrorHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleException(Exception ex) {
-        System.out.println("heeeeeeeee");
-        System.out.println(ex);
-       
         if (ex instanceof Bs280Exception) {
             Bs280Exception bs280Exception = (Bs280Exception) ex;
             ErrorResponse errorResponse = new ErrorResponse(bs280Exception.getMessage(), bs280Exception.getCode(), bs280Exception.getScope());
