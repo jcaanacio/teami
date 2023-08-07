@@ -1,34 +1,40 @@
 package com.bs280.teami.controllers;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.bs280.teami.libraries.Auth;
 import com.bs280.teami.models.Attendee;
+import com.bs280.teami.repositories.AttendeeRepository;
 import com.bs280.teami.services.AttendeeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
 @RequestMapping("/api/v1/attendees")
 public class AttendeeController {
+    private final AttendeeRepository attendeeRepository;
     @Autowired
     private AttendeeService attendeesService;
 
+    public AttendeeController(AttendeeRepository attendeeRepository){
+        this.attendeeRepository = attendeeRepository;
+    }
     @Auth
     @GetMapping
-    public List<Attendee> list(){
-        return attendeesService.list();
+    public ResponseEntity<Page<Attendee>> getAttendees(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ){
+
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Attendee> attendees = attendeeRepository.findAll(pageable);
+        return ResponseEntity.ok(attendees);
     }
+
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -42,7 +48,7 @@ public class AttendeeController {
         attendeesService.delete(id);
     }
 
-    @Auth
+    //@Auth
     @GetMapping()
     @RequestMapping("{id}")
     public Attendee get(@PathVariable Long id){
