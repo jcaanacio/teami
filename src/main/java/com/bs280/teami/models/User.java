@@ -37,6 +37,10 @@ public class User {
         return password;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public void setPassword(String password) {
         IPasswordEncoder passwordEncoder = new Argon2PassEncoder();
         this.password = passwordEncoder.encode(password);
